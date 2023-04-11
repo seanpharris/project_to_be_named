@@ -1,3 +1,3 @@
-g++ ../../main.cpp -o ./project.exe
+g++ ../../dice.cpp -o ./project.exe
 
 .\project.exe
