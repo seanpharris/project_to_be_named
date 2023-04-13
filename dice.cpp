@@ -3,27 +3,24 @@
 #include <ctime>
 using namespace std;
 
-int CheckPrediction(){
-    int choice=0;
-    cin >> choice;
+int CheckPrediction(int choice){
    if (choice>6)
    {
         cout << "Choose a Number 1-6" << endl;
-        CheckPrediction();
+        CheckPrediction(choice);
     }
     return choice; 
-    
 }
 int main ()
 {
     cout << "Enter Predictions!" << endl; 
     int choice;
     cin >> choice;
-    CheckPrediction();
+    CheckPrediction(choice);
     srand(time(NULL));
-    cout <<"Dice Rolled!!" << endl;
+    cout << "Dice Rolled!!" << endl;
     int roll = 0;
     roll= rand() % 6 + 1;
-    cout <<"Your Prediction Was " << choice << endl;
+    cout << "Your Prediction Was " << choice << endl;
     cout << "Your Roll Was " << roll << endl;
 }
