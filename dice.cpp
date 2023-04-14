@@ -22,30 +22,18 @@ int main ()
     int choice;
     srand(time(NULL));
     
-    // Lets roll 3 dice and get 3 predictions!
-    // I will start it off
-
-    // This is a for loop and i is our iterating variable
-    // I will translate each part for clarification
-    // int i=0;   This means initially i = 0
-    // i<3;       "i" will always remain less than 3
-    // i++        Every time it loops "i" will increase by an increment of 1
-    // Note: When coding, numbers will start with 0 NOT 1
     for (int i=0; i<3; i++){
         cout << "Enter prediction of dice roll" << endl; 
-    cin >> choice;
-    CheckPrediction(choice);
+        cin >> choice;
+        CheckPrediction(choice);    
+        cout << "Dice Rolled!!" << endl;
+        int roll = DiceRoll();
 
-    cout << "Dice Rolled!!" << endl;
-    int roll = DiceRoll();
-    
-    cout << "Your Prediction Was " << choice << endl;
-    cout << "Your Roll Was " << roll << endl;
+        cout << "Your Prediction Was " << choice << endl;
+        cout << "Your Roll Was " << roll << endl;
     }
 }
-    // If you build and run this, you will see "i" being printed out as 0, 1, 2
-    // We want to roll the dice 3 times and whatever you put into this loop will run 3 times
-    // Happy hunting! 
+    
 
     
 
