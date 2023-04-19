@@ -4,11 +4,12 @@ import inspect
 from player import Player, getStats
 from characterTemplate import templates
 
-def getCharacterName():
+def inputCharacterName():
+    # get user input
     Player.name = input("What is your characters name? \n")
     print("Welcome " + Player.name + "!")
 
-def getCharacterType():
+def inputCharacterType():
     print("What type of character would you like to be? ")
     # templates is a dictionary and the astrisks print out all items in it
     print(*templates, sep=", ")
@@ -22,13 +23,14 @@ def getCharacterType():
         Player.defense = templates[chosenType].defense
     except KeyError:
         print("Invalid type! Try again. \n")
-        time.sleep(1)
-        getCharacterType()
+        # creates 1.5 second delay before prompting type
+        time.sleep(1.5)
+        inputCharacterType()
 
 if __name__ == "__main__":
     print("Welcome to the Fight Area!")
-    getCharacterName()
-    getCharacterType()
+    inputCharacterName()
+    inputCharacterType()
     getStats()
     
             
