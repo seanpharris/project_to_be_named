@@ -1,9 +1,12 @@
+from combat import combatOptions
+
 class CharacterTemplate:
     def __init__(self, type, health, attack, defense):
         self.type = type
         self.health = health
         self.attack = attack
         self.defense = defense
+        
 
 Barbarian = CharacterTemplate("Barbarian", 100, 20, 20)
 
@@ -16,3 +19,4 @@ templates = {
     Assasin.type: Assasin,
     Ranger.type: Ranger
     }
+
