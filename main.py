@@ -2,66 +2,72 @@ import time
 import inspect
 import random
 
-from player import Player, getStats, getCombat
-from characterTemplate import  CharacterTemplate, templates
-from npc import NPC, getOpponent
-from combat import combatOptions
+from player import player, getStats, modifyStats
+from characterTemplate import templates, getClassWeapons
+from npc import getOpponent
 
 def inputCharacterName():
     # get user input
-    Player.name = input("What is your characters name? \n")
-    print("Welcome " + Player.name + "!")
+    player.name = input("What is your characters name? \n")
+    print("Welcome " + player.name + "!\n")
 
 def inputCharacterType():
-    print("What type of character would you like to be? ")
+    print("What type of character would you like to be?\n")
     # templates is a dictionary and the astrisks print out all items in it
     print(*templates, sep=", ")
     # get user input
-    chosenType = input()
+    chosenClass = input()
     # below will try to set the player stats to the template stats 
     # but will fail if the user inputs a non exisiting template type
     try:
-        Player.health = templates[chosenType].health
-        Player.attack = templates[chosenType].attack
-        Player.defense = templates[chosenType].defense
+        player.characterClass = templates[chosenClass].type
+        player.health = templates[chosenClass].health
+        player.attack = templates[chosenClass].attack
+        player.defense = templates[chosenClass].defense
+        player.stamina = templates[chosenClass].stamina
     except KeyError:
         print("Invalid type! Try again.\n")
         # creates 1.5 second delay before prompting type
         time.sleep(1.5)
         inputCharacterType()
-    inputWeaponChoice(chosenType)
+    inputWeaponChoice()
 
-def inputWeaponChoice(chosenType):
-    weaponChoice = input("What kind of weapon would you like to use?\n")
-    getCombat(chosenType, weaponChoice)
+def inputWeaponChoice():
+    availableWeapons = getClassWeapons()
+    print("What weapon would you like to use?\n" \
+          "Type the number next to the weapon\n")
+    for i, weapon in enumerate(availableWeapons):
+        print(i + 1, weapon)
+    weaponChoice = int(input())
+    weaponChoice -= 1
     try:
-        Player.combat = weaponChoice
+        player.weapon = availableWeapons[weaponChoice]
     except KeyError:
         print("Invalid choice! Try again.\n")
-        inputWeaponChoice(chosenType)
+        inputWeaponChoice()
+    print('Your weapon will be the %s!' % (player.weapon))
         
 
 def inputFight():
-    decision = input("Are you ready to fight? y/n")
+    decision = input("Are you ready to fight? (y/n)\n")
     if decision == "y":
         time.sleep(1.5)
         getOpponent()
     # Could add another option?
     elif decision == "n":
-        print("Oh don't be a pansy!")
+        print("Oh don't be a pansy!\n")
         time.sleep(1.5)
         getOpponent()
     else:
-        print("Invalid input!")
+        print("Invalid input!\n")
         time.sleep(1.5)
         inputFight()
 
 if __name__ == "__main__":
-    print("Welcome to the Arena!")
-    #print(combatOptions["Fist"].weapon)
-    #print(CharacterTemplate.weapons)
+    print("Welcome to the Arena!\n")
     inputCharacterName()
     inputCharacterType()
+    modifyStats()
     getStats()
     inputFight()
     
