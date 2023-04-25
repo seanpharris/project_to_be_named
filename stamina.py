@@ -1,11 +1,11 @@
 class Stamina:
     def __init__(self, level, turns, rounds):
-        self.level = level
+        self.level = str(level)
         self.turns = int(turns)
         self.rounds = int(rounds)
 
 # Stamina levels
-lowStamina = Stamina("low", 1, 5)
+lowStamina = Stamina("Low", 1, 5)
 medStamina = Stamina("Medium", 2, 5)
 highStamina = Stamina("High", 3, 5)
 
@@ -15,6 +15,6 @@ highStamina = Stamina("High", 3, 5)
 staminaLevels = {
     lowStamina.level: lowStamina,
     medStamina.level: medStamina,
-    highStamina: highStamina
+    highStamina.level: highStamina
 }
 

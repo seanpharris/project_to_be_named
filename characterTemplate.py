@@ -1,13 +1,13 @@
-from weapons import weaponClass
+from weapons import weaponList
 from player import player
 
 class CharacterTemplate:
     def __init__(self, type, health, attack, defense, stamina):
-        self.type = type
-        self.health = health
-        self.attack = attack
-        self.defense = defense
-        self.stamina = stamina
+        self.type = str(type)
+        self.health = int(health)
+        self.attack = int(attack)
+        self.defense = int(defense)
+        self.stamina = str(stamina)
         
 # Character templates
 Barbarian = CharacterTemplate("Barbarian", 100, 20, 20, 'Low')
@@ -26,20 +26,20 @@ templates = {
 def getClassWeapons():
     if player.characterClass == "Barbarian":
         availableWeapons = [
-            weaponClass['Fist'].weapon, 
-            weaponClass['Axe'].weapon,
-            weaponClass['Sword'].weapon
+            weaponList['Fist'].name, 
+            weaponList['Axe'].name,
+            weaponList['Sword'].name
             ]
     elif player.characterClass == "Assasin":
         availableWeapons = [
-            weaponClass['Fist'].weapon, 
-            weaponClass['Poison Dagger'].weapon,
-            weaponClass['Bow'].weapon
+            weaponList['Fist'].name, 
+            weaponList['Poison Dagger'].name,
+            weaponList['Bow'].name
             ]
     elif player.characterClass == "Ranger":
         availableWeapons = [
-            weaponClass['Fist'].weapon, 
-            weaponClass['Sword'].weapon,
-            weaponClass['Bow'].weapon
+            weaponList['Fist'].name, 
+            weaponList['Sword'].name,
+            weaponList['Bow'].name
             ]
     return availableWeapons

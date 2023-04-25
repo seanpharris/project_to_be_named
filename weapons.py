@@ -1,37 +1,35 @@
 class Weapon:
-    def __init__(self, weapon, attackModifier, defenseModifier):
-        self.weapon = weapon
-        self.attackModifier = attackModifier
-        self.defenseModifier = defenseModifier
+    def __init__(self, name, attackModifier, defenseModifier, critChance):
+        self.name = str(name)
+        self.attackModifier = float(attackModifier)
+        self.defenseModifier = float(defenseModifier)
+        self.critChance = float(critChance)
 
-# Weapon classes
-fistFighter = Weapon("Fist", .2, .2)
-swordFighter = Weapon("Sword", .4, .4)
-axeFighter = Weapon("Axe", .3, .5)
-bowFighter = Weapon("Bow", .5, .1)
-poisonDaggerFighter = Weapon("Poison Dagger", .5, .2)
+# Weapons
+fist = Weapon("Fist", .2, .2, 0.01)
+sword = Weapon("Sword", .4, .4, 0.2)
+axe = Weapon("Axe", .3, .5, 0.1)
+bow = Weapon("Bow", .5, .1, 0.3)
+poisonDagger = Weapon("Poison Dagger", .5, .2, 0.4)
 
 # Access weapon classes with dictionary - "weaponClass[<weapon>.weapon].<Attribute>"
 # Example: weaponClass["Fist"].attackModifier
-weaponClass = {
-    fistFighter.weapon: fistFighter,
-    swordFighter.weapon: swordFighter, 
-    axeFighter.weapon: axeFighter, 
-    bowFighter.weapon: bowFighter, 
-    poisonDaggerFighter.weapon: poisonDaggerFighter
+weaponList = {
+    fist.name: fist,
+    sword.name: sword, 
+    axe.name: axe, 
+    bow.name: bow, 
+    poisonDagger.name: poisonDagger
     }
 
-moveList = {
-    "Jab": , 
-    "Haymaker": , 
-    "Block":
-    "Vertical Swing": , 
-    "Horizontal Swing": , 
-    "Block": ,
-    "Stab", 
-    "Hack", 
-    "Block"
-    "Quickshot", 
-    "Powershot", 
-    "Block"
-}
+# Call function with dictionary index
+# Example: getWeaponStats(weapon["Sword"])
+def getWeaponStats(weapon):
+    stats = "%s stats\n" \
+            "Attack modifier: %s\n" \
+            "Defense modifier: %s\n" \
+            "Crit chance: %s\n" % (weapon.name, weapon.attackModifier,
+                                  weapon.defenseModifier, weapon.critChance)
+    print(stats)
+
+getWeaponStats(weaponList["Sword"])

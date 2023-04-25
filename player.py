@@ -1,4 +1,4 @@
-from weapons import weaponClass
+from weapons import weaponList
 
 class Player:
     def __init__(self, name, characterClass, health, attack, defense, weapon, stamina):
@@ -10,12 +10,14 @@ class Player:
         self.weapon = str(weapon)
         self.stamina = str(stamina)
 
-player = Player("", "", 0, 0, 0, "", "")
+#player = Player("", "", 0, 0, 0, "", "")
+
+player = Player("Sean", "Ranger", 100, 20, 20, "Bow", "High")
 
 # Modifies player stats based on weapon modifiers
 def modifyStats():
-    player.attack = player.attack + (player.attack * weaponClass[player.weapon].attackModifier)
-    player.defense = player.defense + (player.defense * weaponClass[player.weapon].defenseModifier)
+    player.attack = player.attack + (player.attack * weaponList[player.weapon].attackModifier)
+    player.defense = player.defense + (player.defense * weaponList[player.weapon].defenseModifier)
 
 # Display stats to user
 def getStats():
@@ -27,33 +29,3 @@ def getStats():
                                     player.attack, 
                                     player.defense)
     print(stats)
-
-
-# To do:
-# - Personalize moves each class per weapon
-def buildMoveList():
-    # Barbarian
-    if player.characterClass == "Barbarian":
-        if player.weapon == "Fist":
-            moveList = ["Jab", "Haymaker", "Block"]
-        elif player.weapon == "Axe":
-            moveList = ["Vertical Swing", "Horizontal Swing", "Block"]
-        elif player.weapon == "Sword":
-            moveList = ["Stab", "Hack", "Block"]
-    # Assasin
-    elif player.characterClass == "Assasin":
-        if player.weapon == "Fist":
-            moveList = ["Jab", "Haymaker", "Block"]
-        elif player.weapon == "Poison Dagger":
-            moveList = ["Stab", "Hack", "Block"]
-        elif player.weapon == "Bow":
-            moveList = ["Quickshot", "Powershot", "Block"]
-    # Ranger
-    elif player.characterClass == "Ranger":
-        if player.weapon == "Fist":
-            moveList = ["Jab", "Haymaker", "Block"]
-        elif player.weapon == "Sword":
-            moveList = ["Stab", "Hack", "Block"]
-        elif player.weapon == "Bow":
-            moveList = ["Quickshot", "Powershot", "Block"]
-    return moveList
