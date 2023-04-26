@@ -1,10 +1,9 @@
 import time
-import inspect
-import random
 
 from player import player, getStats, modifyStats
 from characterTemplate import templates, getClassWeapons
 from npc import getOpponent
+from combat import roundPreparation, roundFight
 
 def inputCharacterName():
     # get user input
@@ -52,12 +51,10 @@ def inputFight():
     decision = input("Are you ready to fight? (y/n)\n")
     if decision == "y":
         time.sleep(1.5)
-        getOpponent()
     # Could add another option?
     elif decision == "n":
         print("Oh don't be a pansy!\n")
         time.sleep(1.5)
-        getOpponent()
     else:
         print("Invalid input!\n")
         time.sleep(1.5)
@@ -65,12 +62,16 @@ def inputFight():
 
 if __name__ == "__main__":
     print("Welcome to the Arena!\n")
+    # returns character name by user input accessed with player.name
     inputCharacterName()
+    # returns character name by user input accessed with player.characterClass
     inputCharacterType()
     modifyStats()
     getStats()
     inputFight()
-    
+    opponent = getOpponent()
+    chosenMoves = roundPreparation()
+    roundFight(opponent, chosenMoves)
     
 
     

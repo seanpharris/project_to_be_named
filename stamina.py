@@ -11,7 +11,7 @@ highStamina = Stamina("High", 3, 5)
 
 # Access Stamina with dictionary - "staminaLevels[<level>.level].<Attribute>"
 # Example: staminaLevels[lowStamina.level].turns
-# Example: staminaLevels["low"].turns
+# Example: staminaLevels["Low"].turns
 staminaLevels = {
     lowStamina.level: lowStamina,
     medStamina.level: medStamina,

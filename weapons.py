@@ -32,4 +32,4 @@ def getWeaponStats(weapon):
                                   weapon.defenseModifier, weapon.critChance)
     print(stats)
 
-getWeaponStats(weaponList["Sword"])
+#getWeaponStats(weaponList["Sword"])

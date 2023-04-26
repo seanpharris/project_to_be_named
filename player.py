@@ -12,6 +12,7 @@ class Player:
 
 #player = Player("", "", 0, 0, 0, "", "")
 
+### FOR DEVELOPMENT --- Remove when done
 player = Player("Sean", "Ranger", 100, 20, 20, "Bow", "High")
 
 # Modifies player stats based on weapon modifiers
