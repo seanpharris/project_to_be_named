@@ -1,6 +1,6 @@
 import time
 
-from player import player, getStats, modifyStats
+from player import player, printStats, modifyStats
 from characterTemplate import templates, getClassWeapons
 from npc import getOpponent
 from combat import roundPreparation, roundFight
@@ -67,7 +67,7 @@ if __name__ == "__main__":
     # returns character name by user input accessed with player.characterClass
     inputCharacterType()
     modifyStats()
-    getStats()
+    printStats()
     inputFight()
     opponent = getOpponent()
     chosenMoves = roundPreparation()
