@@ -1,8 +1,6 @@
-import random 
-
 from objects.player import player
 from objects.stamina import staminaLevels
-from objects.move import moveList, getMoveList, getMoveStats
+from objects.action import actionList, getActionList, getActionStats
 from objects.npc import opponents, getNPCRoundMoves
 from characterUtilities import getTheatric, modifyStats
 
@@ -40,7 +38,7 @@ def roundPreparation():
     print(staminaExplanation)
     print("Choose %s moves for this round by selecting the number next to move.\n" 
           % (turns))
-    moveOptions = getMoveList(player.weapon)
+    moveOptions = getActionList(player.weapon)
     print(moveOptions)
     # returns list of user input moves
     # access moves as list 
@@ -56,9 +54,9 @@ def roundPreparation():
 
 # Determine how many rounds there will be based off which character has
 # more stamina/moves and add the exhasuted move if one has less
-def getNumberOfTotalTurns(npcRoundMoves):
+def getNumberOfTotalTurns(npcRoundMoves, chosenPlayerMoves):
     totalRounds = 0
-    exhausted = moveList['Shared']['Exhausted'].name
+    exhausted = actionList['Shared']['Exhausted'].name
     if len(npcRoundMoves) > len(chosenPlayerMoves):
         chosenPlayerMoves.append(exhausted)
         totalRounds = len(npcRoundMoves)
@@ -69,25 +67,26 @@ def getNumberOfTotalTurns(npcRoundMoves):
         totalRounds = len(chosenPlayerMoves)
     return totalRounds
 
+# Currently working on doing the math for damage output/taken
 #def calculateDamage():
 
 
 def roundFight(opponentRosterNumber, chosenPlayerMoves):
     opponent = opponents[opponentRosterNumber]
-    npcMoveOptions = getMoveList(opponent.weapon)
+    npcMoveOptions = getActionList(opponent.weapon)
     npcMoveCount = staminaLevels[opponent.stamina].turns
     npcRoundMoves = getNPCRoundMoves(npcMoveOptions, npcMoveCount)
-    
-    totalTurns = getNumberOfTotalTurns(npcRoundMoves)
+    totalTurns = getNumberOfTotalTurns(npcRoundMoves, chosenPlayerMoves)
     # Move used as an integer to index the moves list for player/npc
+    print("FIGHT!")
     for turn in range(totalTurns):
         # Theatrics!
         npcTheatric = getTheatric(opponent.weapon, npcRoundMoves[turn])
         playerTheatric = getTheatric(player.weapon, chosenPlayerMoves[turn])
-        print("Round Fight! " + npcTheatric + " " + playerTheatric)
+        print("%s, '%s'   %s, '%s'" % (opponent.name, npcTheatric, player.name, playerTheatric))
         # Stats!
-        npcMoveStats = getMoveStats(npcRoundMoves[turn], opponent.weapon)
-        playerMoveStats = getMoveStats(chosenPlayerMoves[turn], player.weapon)
+        npcMoveStats = getActionStats(npcRoundMoves[turn], opponent.weapon)
+        playerMoveStats = getActionStats(chosenPlayerMoves[turn], player.weapon)
         
         characterStats = ["attack", "defense", "critChance"]
         modifyStats(opponent, characterStats, npcMoveStats)
@@ -96,7 +95,7 @@ def roundFight(opponentRosterNumber, chosenPlayerMoves):
         #calculateDamage()
     
 
-chosenPlayerMoves = roundPreparation()
-roundFight(0, chosenPlayerMoves)
+#chosenPlayerMoves = roundPreparation()
+#roundFight(0, chosenPlayerMoves)
 
 

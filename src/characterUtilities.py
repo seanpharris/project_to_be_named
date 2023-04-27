@@ -1,5 +1,5 @@
-from objects.weapons import weaponList
-from objects.move import moveList
+from objects.weapon import weaponList
+from objects.action import actionList
 
 # Modifies player stats based on weapon modifiers
 # setattr(obj, attr, value) - set the value for the class attribute
@@ -22,11 +22,23 @@ def updateStatsFromWeapon(character):
         ]
     modifyStats(character, characterStats, weaponStats)
 
-def getTheatric(weapon, move):
-    if move == 'Exhausted':
-        theatric = moveList['Shared']['Exhausted'].theatric
-    elif move == 'Block':
-        theatric = moveList['Shared']['Block'].theatric
-    else:
-        theatric = moveList[weapon][move].theatric
+# get theatric for move
+def getTheatric(weapon, action):
+    if action == 'Exhausted' or action == 'Block':
+        weapon = 'Shared'
+    theatric = actionList[weapon][action].theatric
     return theatric
+
+def printStats(character):
+    stats = "%s's Stats: \n" \
+            "   Health:  %s  \n"\
+            "   Attack:  %s  \n"\
+            "   Defense: %s  \n" \
+            "   Defense: %s  \n" \
+            "   Crit Chance %s \n" % (character.name, 
+                                    character.health, 
+                                    character.attack, 
+                                    character.defense,
+                                    character.defense, 
+                                    character.critChance)
+    print(stats)

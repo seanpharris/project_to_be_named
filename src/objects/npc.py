@@ -21,7 +21,7 @@ Henchman = NPC(True, 0, "The Henchman", 70, 10, 10, 0, "Medium", "Fist")
 # Access NPCs with dictionary - "opponents[<name>.name].<Attribute>"
 # Example: opponents[Henchman.name].health
 opponents = {
-    Henchman.rosterNumber: Henchman
+    Henchman.rosterNumber : Henchman
     }
 
 # To do:
@@ -33,8 +33,9 @@ def getOpponent():
     time.sleep(1.5)
     randomize = random.uniform(0, len(opponents)-1)
     opponent = opponents[int(randomize)].name
+    rosterNumber = opponents[int(randomize)].rosterNumber
     print(opponent + "!")
-    return opponent
+    return opponent, rosterNumber
 
 def getRandomMove(list):
     randomize = int(random.uniform(0, len(list)))
@@ -42,11 +43,11 @@ def getRandomMove(list):
     randomMove = list[randomize]
     return randomMove
 
-def getNPCRoundMoves(moveOptions, moveCount):
+def getNPCRoundMoves(actionOptions, actionCount):
     npcRoundMoves = []
-    for i in range(moveCount):
-        randomMove = getRandomMove(moveOptions)
+    for i in range(actionCount):
+        randomMove = getRandomMove(actionOptions)
         while randomMove == "Exhausted":
-            randomMove = getRandomMove(moveOptions)
+            randomMove = getRandomMove(actionOptions)
         npcRoundMoves.append(randomMove)
     return npcRoundMoves

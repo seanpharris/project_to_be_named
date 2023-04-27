@@ -1,5 +1,5 @@
-from weapons import weaponList
-from player import player
+from objects.weapon import weaponList
+from objects.player import player
 
 class CharacterTemplate:
     def __init__(self, type, health, attack, defense, stamina):
