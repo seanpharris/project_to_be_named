@@ -1,5 +1,5 @@
-from weapons import weaponList
-from move import moveList
+from objects.weapons import weaponList
+from objects.move import moveList
 
 # Modifies player stats based on weapon modifiers
 # setattr(obj, attr, value) - set the value for the class attribute

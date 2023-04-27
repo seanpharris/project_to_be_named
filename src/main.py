@@ -1,8 +1,8 @@
 import time
 
-from player import player, printStats
-from characterTemplate import templates, setClassWeapons
-from npc import getOpponent
+from objects.player import player, printStats
+from objects.characterTemplate import templates, setClassWeapons
+from objects.npc import getOpponent
 from combat import roundPreparation, roundFight
 from characterUtilities import updateStatsFromWeapon
 

@@ -1,9 +1,9 @@
 import random 
 
-from player import player
-from stamina import staminaLevels
-from move import moveList, getMoveList, getMoveStats
-from npc import opponents, getNPCRoundMoves
+from objects.player import player
+from objects.stamina import staminaLevels
+from objects.move import moveList, getMoveList, getMoveStats
+from objects.npc import opponents, getNPCRoundMoves
 from characterUtilities import getTheatric, modifyStats
 
 ###### Round Prep ######
