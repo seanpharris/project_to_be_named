@@ -23,7 +23,7 @@ templates = {
     }
 
 # When building character, use getClassWeapons to build list of weapons for class
-def getClassWeapons():
+def setClassWeapons():
     if player.characterClass == "Barbarian":
         availableWeapons = [
             weaponList['Fist'].name, 

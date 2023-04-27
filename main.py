@@ -1,7 +1,7 @@
 import time
 
 from player import player, printStats
-from characterTemplate import templates, getClassWeapons
+from characterTemplate import templates, setClassWeapons
 from npc import getOpponent
 from combat import roundPreparation, roundFight
 from characterUtilities import updateStatsFromWeapon
@@ -33,7 +33,7 @@ def inputCharacterType():
     inputWeaponChoice()
 
 def inputWeaponChoice():
-    availableWeapons = getClassWeapons()
+    availableWeapons = setClassWeapons()
     print("What weapon would you like to use?\n" \
           "Type the number next to the weapon\n")
     for i, weapon in enumerate(availableWeapons):

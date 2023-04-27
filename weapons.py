@@ -24,7 +24,7 @@ weaponList = {
 
 # Call function with dictionary index
 # Example: getWeaponStats(weapon["Sword"])
-def getWeaponStats(weapon):
+def printWeaponStats(weapon):
     stats = "%s stats\n" \
             "Attack modifier: %s\n" \
             "Defense modifier: %s\n" \
