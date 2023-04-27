@@ -2,18 +2,20 @@ import random
 import time
 
 class NPC:
-    def __init__(self, rosterNumber, name, health, attack, defense, stamina, weapon):
+    def __init__(self, alive, rosterNumber, name, health, attack, defense, critChance, stamina, weapon):
+        self.alive = bool(alive)
         self.rosterNumber = int(rosterNumber)
         self.name = str(name)
         self.health = int(health)
         self.attack = int(attack)
         self.defense = int(defense)
+        self.critChance = float(critChance)
         self.stamina = str(stamina)
         self.weapon = str(weapon)
 
 # TO DO: Make more NPCs and add to oppenents list
 # NPC List
-Henchman = NPC(0, "The Henchman", 70, 10, 10, "Medium", "Fist")
+Henchman = NPC(True, 0, "The Henchman", 70, 10, 10, 0, "Medium", "Fist")
 
 
 # Access NPCs with dictionary - "opponents[<name>.name].<Attribute>"
@@ -33,3 +35,18 @@ def getOpponent():
     opponent = opponents[int(randomize)].name
     print(opponent + "!")
     return opponent
+
+def getRandomMove(list):
+    randomize = int(random.uniform(0, len(list)))
+    randomize += 1
+    randomMove = list[randomize]
+    return randomMove
+
+def getNPCRoundMoves(moveOptions, moveCount):
+    npcRoundMoves = []
+    for i in range(moveCount):
+        randomMove = getRandomMove(moveOptions)
+        while randomMove == "Exhausted":
+            randomMove = getRandomMove(moveOptions)
+        npcRoundMoves.append(randomMove)
+    return npcRoundMoves

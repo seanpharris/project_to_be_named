@@ -16,9 +16,9 @@ class Player:
 ### FOR DEVELOPMENT --- Remove when done
 player = Player("Sean", "Ranger", 100, 20, 20, 0, "Bow", "High")
 
-playerStats = ["attack", "defense", "critChance"]
-
 # Modifies player stats based on weapon modifiers
+# setattr(obj, attr, value) - set the value for the class attribute
+# getattr(ob, attr) - return value for class attribute
 def modifyStats(stat, modifier):
     if len(stat) > 1:
         for i, s in enumerate(stat):
@@ -29,30 +29,10 @@ def modifyStats(stat, modifier):
         setattr(player, stat, attrValue + (attrValue * modifier))
     
 def updateStatsFromWeapon():
+    playerStats = ["attack", "defense", "critChance"]
     weaponStats = [
         weaponList[player.weapon].attackModifier,
         weaponList[player.weapon].defenseModifier,
         weaponList[player.weapon].critChance
         ]
     modifyStats(playerStats, weaponStats)
-
-updateStatsFromWeapon()
-
-#modifyStats("attack", weaponList[player.weapon].attackModifier)
-
-print(player.attack)
-
-#updateStatsFromWeapon()
-
-# Display stats to user
-def printStats():
-    stats = "%s's Stats: \n" \
-            "   Health:  %s  \n"\
-            "   Attack:  %s  \n"\
-            "   Defense: %s  \n" \
-            "   Crit Chance %s \n" % (player.name, 
-                                    player.health, 
-                                    player.attack, 
-                                    player.defense, 
-                                    player.critChance)
-    print(stats)

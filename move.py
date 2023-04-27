@@ -7,8 +7,8 @@ class Move:
         self.theatric = str(theatric)
                                    
 # Fist
-jab = Move("Jab", 0, 0, 0, "POW")
-haymaker = Move("Haymaker", 0, 0, 0, "BAM")
+jab = Move("Jab", 0, 0, 0.01, "POW!")
+haymaker = Move("Haymaker", 0, 0, 0.1, "BAM!")
 
 fistMoves = { 
     jab.name: jab,
@@ -16,8 +16,8 @@ fistMoves = {
 }
 
 # Axe
-verticalSwing = Move("Vertical Swing", 0, 0, 0, "SCHICK")
-horizontalSwing = Move("Horizontal Swing", 0, 0, 0, "SCHINK")
+verticalSwing = Move("Vertical Swing", 0.15, 0.1, 0.1, "SCHICK!")
+horizontalSwing = Move("Horizontal Swing", 0.1, 0.15, 0.1, "SCHINK!")
 
 axeMoves = { 
     verticalSwing.name: verticalSwing,
@@ -25,8 +25,8 @@ axeMoves = {
 }
 
 # Sword/dagger
-hack = Move("Hack", 0, 0, 0, "SCHWACK")
-stab = Move("Stab", 0, 0, 0, "SHINK")
+hack = Move("Hack", 0.2, 0.05, 0.2, "SCHWACK!")
+stab = Move("Stab", 0.15, 0.1, 0.2, "SHINK!")
 
 bladeMoves = {
     hack.name: hack,
@@ -34,8 +34,8 @@ bladeMoves = {
 }
 
 # Bow
-quickshot = Move("Quickshot", 0, 0, 0, "WIZZZ")
-powershot = Move("Powershot", 0, 0, 0, "FLOOP")
+quickshot = Move("Quickshot", 0.2, 0.15, 0.2, "WIZZZ!")
+powershot = Move("Powershot", 0.25, 0.05, 0.25, "FLOOP!")
 
 bowMoves = {
     quickshot.name: quickshot,
@@ -43,11 +43,14 @@ bowMoves = {
 }
 
 # Moves shared by all weapons
-block = Move("Block", 0, 0, 0, "UGHHH")
+block = Move("Block", 0, 0.5, 0, "UGHHH!")
+exhausted = Move("Exhausted", 0, 0, 0, "'Whimpers'")
 
 sharedMoves = {
-    block.name: block
+    block.name: block,
+    exhausted.name: exhausted
 }
+
 
 # Access Moves with dictionary - "moveList[<weapon>][<move>].<Attribute>"
 # Example: moveList["Sword"]["Hack"].critChance
@@ -61,7 +64,7 @@ moveList = {
 
 # Call function with dictionary index
 # Example: getMoveStats(moveList["Sword"]["Hack"])
-def getMoveStats(weaponMove):
+def printMoveStats(weaponMove):
     stats = "%s stats\n" \
             "Attack modifier: %s\n" \
             "Defense modifier: %s\n" \
@@ -69,6 +72,13 @@ def getMoveStats(weaponMove):
                                   weaponMove.defenseModifier, weaponMove.critChance)
     print(stats)
 
+def getMoveStats(characterMove, characterWeapon):
+    if characterMove == 'Block' or characterMove == 'Exhausted':
+        characterWeapon = 'Shared'
+    characterMoveAttackStat = moveList[characterWeapon][characterMove].attackModifier
+    characterMoveDefenseStat = moveList[characterWeapon][characterMove].defenseModifier
+    characterMoveCritChance = moveList[characterWeapon][characterMove].critChance
+    return [characterMoveAttackStat, characterMoveDefenseStat, characterMoveCritChance]
 
 def getMoveList(weapon):
     moveOptions = {}
